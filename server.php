@@ -12,15 +12,11 @@ Page name: <input type="text" name="pageName">
 
 <?php
 
-$pages = array();
-
  if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$pageName = $_POST['pageName'];
 	if (strlen($pageName) > 0) {
 	$newPage = new page($pageName);
-	echo json_encode($newPage);
-	array_push($pages, $newPage); 
-	//echoArray($pages);
+	echo "<br />" . json_encode($newPage);
 	}
  }
  /*if post request is recieved, gets pageName parameter and uses it to create a new page
@@ -36,7 +32,7 @@ function echoArray($array){
 	public $pageName;
 	public $passwordProtected;
 	public $style;
-	public function _constructor ($pageName, $passwordProtected = false, $style = "standard") {
+	public function __construct ($pageName, $passwordProtected = false, $style = "standard") {
 		$this->pageName = $pageName;
 		$this->passwordProtected = $passwordProtected;
 		$this->style = $style;
